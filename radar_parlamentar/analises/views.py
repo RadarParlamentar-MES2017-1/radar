@@ -22,7 +22,7 @@ from django.template import RequestContext
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, get_object_or_404
 from modelagem import models
-from modelagem import utils, serializer
+from modelagem import utils
 from grafico import JsonAnaliseGenerator
 from analise import AnalisadorTemporal
 import datetime
@@ -84,7 +84,7 @@ def json_analise(request, nome_curto_casa_legislativa,
     return HttpResponse(json, mimetype='application/json')
 
 
-def lista_de_votacoes_filtradas(request, 
+def lista_de_votacoes_filtradas(request,
                                 nome_curto_casa_legislativa,
                                 periodicidade=models.BIENIO,
                                 palavras_chave=""):
@@ -128,3 +128,9 @@ def json_proposicao(request, nome_curto_casa_legislativa, cod_proposicao):
     proposicao_serializer = serializer.ProposicaoSerializer()
     dados = proposicao_serializer.get_json_proposicao(proposicao)
     return HttpResponse(dados, mimetype='application/json')
+
+
+def votacoes(request):
+    return render_to_response('votacoes.html',
+                              {},
+                              context_instance=RequestContext(request))
