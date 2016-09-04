@@ -38,7 +38,7 @@ Plot = (function ($) {
     function initialize(nome_curto_casa_legislativa_, id_proposicao_) {
         //This is just a sample data for tests purposes.
         //d3.json("/analises/json_plenaria/cmsp/100", plot_data);
-        nome_curto_casa_legislativa = nome_curto_casa_legislativa_; 
+        nome_curto_casa_legislativa = nome_curto_casa_legislativa_;
         id_proposicao = id_proposicao_;
         d3.json("/analises/json_plenaria/" + nome_curto_casa_legislativa + "/" + id_proposicao, first_plot);
     }
@@ -58,6 +58,8 @@ Plot = (function ($) {
         $("#graficoplenaria").empty();
 
         idx_votacao = get_idx_votacao();
+        // Inicialmente remove o spinner de loading
+        $("#loading").remove();
 
         document.getElementById('casa_legislativa').scrollIntoView()
         $( "#votacao" ).text(idx_votacao + 'ª votação');
@@ -65,6 +67,17 @@ Plot = (function ($) {
         var partidos = dado.partidos,
             votacao = dado.votacoes[idx_votacao-1],
             parlamentares = votacao.parlamentares;
+
+        console.log(dado)
+        console.log(votacao)
+
+        $('#prop_ementa').html(data.ementa)
+        $('#votacao_data').html(votacao.data)
+        $('#prop_descr').html(data.descricao)
+        $('#votacao_descr').html(votacao.descricao)
+        $('#votacao_resultado').html(votacao.resultado)
+
+        len_votacoes = data.votacoes.length;
 
         var width = 550;
         var height = 300;
@@ -80,14 +93,14 @@ Plot = (function ($) {
           .attr("height", height)
           .append("g")
           .attr("transform", "translate(280,270)");
- 
+
         anterior = grupo_controle.append("image")
             .attr("xlink:href", "/static/assets/arrow_left.svg")
             .attr("id", "proxima")
             .attr("class", "previous")
             .attr("width", controle_height)
             .attr("height", controle_height);
-              
+
         proxima = grupo_controle.append("image")
             .attr("xlink:href", "/static/assets/arrow_right.svg")
             .attr("id", "anterior")
@@ -204,7 +217,7 @@ Plot = (function ($) {
     }
 
     function mouseover_previous() {
-        if (votacao_anterior_valida()) { 
+        if (votacao_anterior_valida()) {
 			anterior.classed("active", true);
             anterior.transition()
                 .attr("xlink:href", "/static/assets/arrow_left_focused.svg")
@@ -214,32 +227,32 @@ Plot = (function ($) {
     function mouseout_previous() {
         anterior.classed("active", false);
         anterior.transition()
-            .attr("xlink:href", "/static/assets/arrow_left.svg")            
+            .attr("xlink:href", "/static/assets/arrow_left.svg")
     }
 
 
     function proxima_votacao() {
-        if (proxima_votacao_valida()) { 
+        if (proxima_votacao_valida()) {
             idx_votacao = idx_votacao + 1
-            change_votacao();     
+            change_votacao();
         }
     }
 
     function votacao_anterior() {
         if (votacao_anterior_valida()) {
             idx_votacao = idx_votacao - 1
-            change_votacao();   
+            change_votacao();
         }
     }
-    
+
     function proxima_votacao_valida() {
         return idx_votacao < len_votacoes;
     }
-    
+
     function votacao_anterior_valida() {
         return idx_votacao > 1;
     }
-    
+
     function change_votacao() {
         if(!votacao_anterior_valida()) {
             anterior.classed("invalid", true);
@@ -251,8 +264,8 @@ Plot = (function ($) {
             proxima.classed("invalid", true);
         } else {
             proxima.classed("invalid", false);
-        }    
-    
+        }
+
         window.location.hash = idx_votacao;
         plot_data();
     }
