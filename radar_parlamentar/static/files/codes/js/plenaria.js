@@ -74,8 +74,7 @@ Plot = (function ($) {
         // Inicialmente remove o spinner de loading
         $("#loading").remove();
 
-        document.getElementById('casa_legislativa').scrollIntoView()
-        $( "#votacao" ).text(idx_votacao + 'ª votação');
+        idx_votacao = get_idx_votacao();
 
         var partidos = dado.partidos,
             votacao = dado.votacoes[idx_votacao-1],
@@ -182,6 +181,9 @@ Plot = (function ($) {
                         div.append('<p><b>Voto: </b>' + d.voto + '</p>');
                     }
                 });
+
+        document.getElementById('votacoes').scrollIntoView();
+
     }
 
     window.plot_data = plot_data
