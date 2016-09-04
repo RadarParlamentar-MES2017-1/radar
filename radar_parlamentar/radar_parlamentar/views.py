@@ -154,6 +154,7 @@ def dados_utilizados(request):
     return render_to_response('dados_utilizados.html', {'dumpdate': dt_str},
                               context_instance=RequestContext(request))
 
+
 def generate_blog_news(request):
     number_of_news = 10
     dictionary = DictionaryBlogGenerator.create_dict_blog()
