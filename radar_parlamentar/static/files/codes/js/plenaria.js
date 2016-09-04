@@ -91,12 +91,6 @@ Plot = (function ($) {
 
         var width = 550;
         var height = 300;
-        var controle_height = 100;
-
-        var grupo_controle = d3.select("#controle").append("svg")
-            .attr("width", width)
-            .attr("height", controle_height)
-            .append("g");
 
         var svg = d3.select("#graficoplenaria").append("svg")
           .attr("width", width)
@@ -230,7 +224,7 @@ Plot = (function ($) {
 
     function mouseover_previous() {
         if (votacao_anterior_valida()) {
-			anterior.classed("active", true);
+            anterior.classed("active", true);
             anterior.transition()
                 .attr("xlink:href", "/static/assets/arrow_left_focused.svg")
         }
@@ -281,7 +275,6 @@ Plot = (function ($) {
         window.location.hash = idx_votacao;
         plot_data();
     }
-
 
     return {
         initialize: initialize
