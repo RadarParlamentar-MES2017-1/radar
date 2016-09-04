@@ -45,7 +45,7 @@
             </select>
         </div>
         {% if casa_legislativa %}
-            <div>
+            <div class="container_flex">
                 <div>
                     <label for="proposicao">Proposição:</label>
                     <select id="proposicao" name="proposicao" onchange="route()">
@@ -56,7 +56,9 @@
                         {% endfor %}
                     </select>
                 </div>
+                <div class='myflex-spacer'></div>
                 <div>
+                    <label for="votacoes">Votações:</label>
                     <div id="votacoes"></div>
                 </div>
             </div>
@@ -76,7 +78,7 @@
                 <figure id="animacao"><center><img id="loading" src="/static/files/images/spinner.gif"></img></center></figure>
             </div>
         </article>
-        <aside class='aside_votacao'>
+        <aside class='container_flex'>
             <div class='filtrosVotosVotacao'>
                 <h3> Filtros </h3>
                 <ul>
@@ -85,6 +87,7 @@
                     <li><input type="button" onClick="destacarVoto('ABSTENCAO')" name="Abstenção", value="Abstenção"></button></li>
                 </ul>
             </div>
+            <div class='myflex-spacer'></div>
             <div class='votoParlamentar'>
                 <h3>Parlamentar</h3>
                 <div id='detalheParlamentar'></div>
