@@ -78,14 +78,11 @@ Plot = (function ($) {
             votacao = dado.votacoes[idx_votacao-1],
             parlamentares = votacao.parlamentares;
 
-        console.log(dado)
-        console.log(votacao)
-
-        $('#prop_ementa').html(data.ementa)
-        $('#votacao_data').html(votacao.data)
-        $('#prop_descr').html(data.descricao)
-        $('#votacao_descr').html(votacao.descricao)
-        $('#votacao_resultado').html(votacao.resultado)
+        $('#prop_ementa').html(dado.ementa)
+        $('#prop_descr').html(dado.descricao)
+        $('#votacao_data').html('Data: ' + votacao.data)
+        $('#votacao_descr').html('Descrição: ' + votacao.descricao)
+        $('#votacao_resultado').html('Resultado: ' + votacao.resultado)
 
         len_votacoes = data.votacoes.length;
 
