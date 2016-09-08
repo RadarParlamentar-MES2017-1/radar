@@ -607,7 +607,6 @@ Plot = (function ($) {
                     }
                 }
             }
-            window.alert("Parlamentar nao encontrado")
         }
 
         function mouseover_legend(party) {
