@@ -1,6 +1,6 @@
 Radar Parlamentar
 ==================
-
+[![Build Status](https://travis-ci.org/RadarParlamentar-MES2017-1/radar.svg?branch=master)](https://travis-ci.org/RadarParlamentar-MES2017-1/radar)
 [![Coverage Status](https://coveralls.io/repos/github/RadarParlamentar-MES2017-1/radar/badge.svg?branch=master)](https://coveralls.io/github/RadarParlamentar-MES2017-1/radar?branch=master)
 
 Este projeto utiliza dados abertos para analisar os votos de parlamentares em diferentes casas legislativas do Brasil.
